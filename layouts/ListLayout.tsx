@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -8,6 +8,30 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
+
+interface VideoFrameProps {
+  url: string
+  width?: number
+  height?: number
+}
+
+function VideoFrame({ url, width = 300, height = 375 }: VideoFrameProps) {
+  if (!url) return null
+  return (
+    <div
+      className="bg-gray-900 rounded-lg overflow-hidden mx-auto"
+      style={{ width, aspectRatio: `${width} / ${height}` }}
+    >
+      <video
+        controls
+        className="w-full h-full object-cover"
+      >
+        <source src={url} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  )
+}
 
 interface PaginationProps {
   totalPages: number
@@ -74,6 +98,7 @@ export default function ListLayout({
   activeLesson,
 }: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState('')
+  const [selectedLesson, setSelectedLesson] = useState<string | null>(null)
   const filteredBlogPosts = posts.filter((post) => {
     const searchContent = post.title + post.summary + post.tags?.join(' ')
     return searchContent.toLowerCase().includes(searchValue.toLowerCase())
@@ -82,20 +107,25 @@ export default function ListLayout({
   // If initialDisplayPosts exist, display it if no searchValue is specified
   const displayPosts =
     initialDisplayPosts.length > 0 && !searchValue ? initialDisplayPosts : filteredBlogPosts
+  const selectedPost = selectedLesson ? posts.find((post) => post.path === selectedLesson) : null
+  const selectedVideoUrl = (selectedPost?.['videoUrl'] as string) || ''
+
+  useEffect(() => {
+    if (selectedLesson) {
+      setSelectedLesson(null)
+    }
+  }, [initialDisplayPosts])
 
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            {title}
-          </h1>
           {activeLesson && (
             <p className="text-sm font-medium text-gray-600 capitalize dark:text-gray-300">
               Active lesson: {activeLesson.replace(/-/g, ' ')}
             </p>
           )}
-          <div className="relative max-w-lg">
+          {/* <div className="relative">
             <label>
               <span className="sr-only">Search articles</span>
               <input
@@ -106,55 +136,88 @@ export default function ListLayout({
                 className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
               />
             </label>
-            <svg
-              className="absolute top-3 right-3 h-5 w-5 text-gray-400 dark:text-gray-300"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
+             
+          </div> */}
         </div>
-        <ul>
-          {!filteredBlogPosts.length && 'No posts found.'}
-          {displayPosts.map((post) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 py-8">
+          {selectedLesson !== null && (
+            <>
+              {/* <div className="col-span-full text-left text-sm font-semibold text-gray-700 dark:text-gray-200">
+                Selected lesson: {selectedPost?.title || selectedLesson}
+              </div> */}
+              <div className="col-span-fulltext-gray-500 dark:text-gray-400">
+                <VideoFrame url={selectedVideoUrl} width={400} height={475} />
+              </div>
+
+              <div className="flex flex-col items-start gap-3 rounded-lg border p-4 transition cursor-pointer border-gray-200 bg-white hover:shadow-lg hover:border-gray-300 dark:border-gray-700 dark:bg-gray-800" >
+                <div className="flex items-center justify-center">
+                  <button
+                    onClick={() => setSelectedLesson(null)}
+                    className="mb-4 flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 transition"
+                  >
+                    ← Back
+                  </button>
+                </div>
+                <div className="w-full">
+                  xxx <br></br>
+                  ssfsdf
+                </div>
+              </div>
+              {/* <div className="col-span-full text-gray-500 dark:text-gray-400">
+                <button
+                  onClick={() => setSelectedLesson(null)}
+                  className="mb-4 flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200 transition"
+                >
+                  ← Back
+                </button>
+                <div id="content">
+                  dvdfvfd
+                  fdvfdg
+                  dfgfdg
+                  dfgfd
+                </div>
+              </div> */}
+
+            </>
+          )}
+          {displayPosts.length === 0 && (
+            <div className="col-span-full text-center py-12 text-gray-500 dark:text-gray-400">
+              No posts found.
+            </div>
+          )}
+          {selectedLesson === null && displayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (
-              <li key={path} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
-                    <div>
-                      <h3 className="text-2xl leading-8 font-bold tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </h3>
-                      <div className="flex flex-wrap">
-                        {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                      </div>
-                    </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+              <button
+                key={path}
+                onClick={() => setSelectedLesson(selectedLesson === path ? null : path)}
+                className={`flex flex-col items-start gap-3 rounded-lg border p-4 transition cursor-pointer ${selectedLesson === path
+                  ? 'border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-950/30'
+                  : 'border-gray-200 bg-white hover:shadow-lg hover:border-gray-300 dark:border-gray-700 dark:bg-gray-800'
+                  }`}
+              >
+                <div className="flex items-center justify-center">
+                  <span className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-lg ${selectedLesson === path
+                    ? 'bg-blue-100 dark:bg-blue-900/50'
+                    : 'bg-gray-100 dark:bg-gray-700'
+                    }`}>
+                    📘
+                  </span>
+                </div>
+                <div className="w-full">
+                  <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 line-clamp-2">
+                    {title || path}
+                  </h3>
+                  {summary && (
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 line-clamp-2">
                       {summary}
-                    </div>
-                  </div>
-                </article>
-              </li>
+                    </p>
+                  )}
+                </div>
+              </button>
             )
           })}
-        </ul>
+        </div>
       </div>
       {pagination && pagination.totalPages > 1 && !searchValue && (
         <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />

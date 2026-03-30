@@ -6,6 +6,7 @@ export type TopicLesson = {
   id: number
   title: string
   slug: string
+  videoUrl?: string
   createdAt: string
 }
 
@@ -43,6 +44,7 @@ export const normalizeTopic = (topic: TopicData | number): TopicData => {
         id: index + 1,
         title: `Lesson ${index + 1}`,
         slug: `lesson-${index + 1}`,
+        videoUrl: '',
         createdAt: new Date(2026, 0, Math.max(1, index + 1)).toISOString().slice(0, 10),
       })),
     }
@@ -90,7 +92,8 @@ export const topicCountToPosts = (topic: string, topicData: TopicData | number):
       title: lesson.title,
       summary: `Lesson content for ${topicDisplay} (${lesson.slug}).`,
       tags: [topic],
-    })) as CoreContent<Blog>[]
+      videoUrl: lesson.videoUrl || '',
+    })) as unknown as CoreContent<Blog>[]
   }
 
   return Array.from({ length: normalized.count }, (_, index) => ({
