@@ -1,0 +1,251 @@
+{
+  "topics": {
+    "lesson-1": {
+      "count": 2,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Introduction to Next.js 16",
+          "slug": "introduction-to-nextjs-16",
+          "createdAt": "2025-01-10"
+        },
+        {
+          "id": 2,
+          "title": "Getting Started with Tailwind CSS",
+          "slug": "getting-started-with-tailwind-css",
+          "createdAt": "2025-01-12"
+        }
+      ]
+    },
+    "lesson-2": {
+      "count": 3,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Introduction to Next.js 16",
+          "slug": "introduction-to-nextjs-16",
+          "createdAt": "2025-01-10"
+        },
+        {
+          "id": 2,
+          "title": "Getting Started with Tailwind CSS",
+          "slug": "getting-started-with-tailwind-css",
+          "createdAt": "2025-01-12"
+        },
+        {
+          "id": 3,
+          "title": "Building a Blog with Next.js and MDX",
+          "slug": "building-a-blog-with-nextjs-and-mdx",
+          "createdAt": "2025-01-20"
+        }
+      ]
+    },
+    "lesson-3": {
+      "count": 2,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Introduction to Next.js 16",
+          "slug": "introduction-to-nextjs-16",
+          "createdAt": "2025-01-10"
+        },
+        {
+          "id": 2,
+          "title": "Getting Started with Tailwind CSS",
+          "slug": "getting-started-with-tailwind-css",
+          "createdAt": "2025-01-12"
+        }
+      ]
+    },
+    "lesson-4": {
+      "count": 2,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Introduction to Next.js 16",
+          "slug": "introduction-to-nextjs-16",
+          "createdAt": "2025-01-10"
+        },
+        {
+          "id": 2,
+          "title": "Getting Started with Tailwind CSS",
+          "slug": "getting-started-with-tailwind-css",
+          "createdAt": "2025-01-12"
+        }
+      ]
+    },
+    "lesson-5": {
+      "count": 2,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Introduction to Next.js 16",
+          "slug": "introduction-to-nextjs-16",
+          "createdAt": "2025-01-10"
+        },
+        {
+          "id": 2,
+          "title": "Getting Started with Tailwind CSS",
+          "slug": "getting-started-with-tailwind-css",
+          "createdAt": "2025-01-12"
+        }
+      ]
+    },
+    "lesson-6": {
+      "count": 1,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Lesson 6 Title",
+          "slug": "lesson-6-title",
+          "createdAt": "2025-01-14"
+        }
+      ]
+    },
+    "lesson-7": {
+      "count": 1,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Lesson 7 Title",
+          "slug": "lesson-7-title",
+          "createdAt": "2025-01-15"
+        }
+      ]
+    },
+    "lesson-8": {
+      "count": 1,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Lesson 8 Title",
+          "slug": "lesson-8-title",
+          "createdAt": "2025-01-16"
+        }
+      ]
+    },
+    "lesson-9": {
+      "count": 1,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Lesson 9 Title",
+          "slug": "lesson-9-title",
+          "createdAt": "2025-01-17"
+        }
+      ]
+    },
+    "lesson-10": {
+      "count": 1,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Lesson 10 Title",
+          "slug": "lesson-10-title",
+          "createdAt": "2025-01-18"
+        }
+      ]
+    },
+    "lesson-11": {
+      "count": 1,
+      "lessonList": [
+        {
+          "id": 1,
+          "title": "Lesson 11 Title",
+          "slug": "lesson-11-title",
+          "createdAt": "2025-01-19"
+        }
+      ]
+    }
+  },
+  "videoTutorials": [
+    {
+      "id": 1,
+      "title": "Getting Started with Next.js 16",
+      "description": "Learn the basics of Next.js 16, including routing, layouts, and the App Router.",
+      "duration": "12:34",
+      "topic": "next-js",
+      "level": "beginner",
+      "url": "https://youtube.com/watch?v=example1",
+      "thumbnail": "/thumbnails/nextjs-intro.jpg",
+      "createdAt": "2025-01-15"
+    },
+    {
+      "id": 2,
+      "title": "Tailwind CSS Styling Guide",
+      "description": "Master Tailwind CSS utilities, responsive design, and custom components.",
+      "duration": "18:45",
+      "topic": "tailwind",
+      "level": "intermediate",
+      "url": "https://youtube.com/watch?v=example2",
+      "thumbnail": "/thumbnails/tailwind-guide.jpg",
+      "createdAt": "2025-01-20"
+    },
+    {
+      "id": 3,
+      "title": "Building a Blog with Next.js and MDX",
+      "description": "Create a full-featured blog using Next.js, MDX, and Contentlayer.",
+      "duration": "25:20",
+      "topic": "guide",
+      "level": "intermediate",
+      "url": "https://youtube.com/watch?v=example3",
+      "thumbnail": "/thumbnails/blog-guide.jpg",
+      "createdAt": "2025-01-25"
+    },
+    {
+      "id": 4,
+      "title": "App Router Deep Dive",
+      "description": "Explore advanced App Router features, dynamic routes, and route groups.",
+      "duration": "31:15",
+      "topic": "next-js",
+      "level": "advanced",
+      "url": "https://youtube.com/watch?v=example4",
+      "thumbnail": "/thumbnails/app-router.jpg",
+      "createdAt": "2025-02-01"
+    },
+    {
+      "id": 5,
+      "title": "Responsive Design with Tailwind",
+      "description": "Learn responsive breakpoints, mobile-first design, and adaptive layouts.",
+      "duration": "16:50",
+      "topic": "tailwind",
+      "level": "intermediate",
+      "url": "https://youtube.com/watch?v=example5",
+      "thumbnail": "/thumbnails/responsive-design.jpg",
+      "createdAt": "2025-02-05"
+    },
+    {
+      "id": 6,
+      "title": "React 19 Features and Updates",
+      "description": "Explore what's new in React 19 and how to upgrade your projects.",
+      "duration": "22:10",
+      "topic": "feature",
+      "level": "intermediate",
+      "url": "https://youtube.com/watch?v=example6",
+      "thumbnail": "/thumbnails/react19.jpg",
+      "createdAt": "2025-02-10"
+    },
+    {
+      "id": 7,
+      "title": "Markdown and MDX Essentials",
+      "description": "Learn how to write content in Markdown and MDX with embedded React components.",
+      "duration": "14:35",
+      "topic": "markdown",
+      "level": "beginner",
+      "url": "https://youtube.com/watch?v=example7",
+      "thumbnail": "/thumbnails/markdown.jpg",
+      "createdAt": "2025-02-15"
+    },
+    {
+      "id": 8,
+      "title": "GitHub Integration and Deployment",
+      "description": "Deploy Next.js apps to production using GitHub and Vercel.",
+      "duration": "19:42",
+      "topic": "github",
+      "level": "intermediate",
+      "url": "https://youtube.com/watch?v=example8",
+      "thumbnail": "/thumbnails/github-deploy.jpg",
+      "createdAt": "2025-02-20"
+    }
+  ]
+}

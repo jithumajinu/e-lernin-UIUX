@@ -1,0 +1,7 @@
+
+> tailwind-nextjs-starter-blog@2.4.0 build
+> cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs
+
+   ▲ Next.js 15.2.4
+
+   Creating an optimized production build ...

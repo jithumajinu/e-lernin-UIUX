@@ -1,11 +1,9 @@
 import NextImage, { ImageProps } from 'next/image'
 
-const customLoader = ({ src }: { src: string }) => {
-  return src
-}
+const basePath = process.env.BASE_PATH
 
-const Image = (props: ImageProps) => {
-  return <NextImage {...props} loader={customLoader} />
-}
+const Image = ({ src, ...rest }: ImageProps) => (
+  <NextImage src={`${basePath || ''}${src}`} {...rest} />
+)
 
 export default Image
